@@ -51,8 +51,8 @@
 		1490EF5D227F7ECF001698ED = {
 			isa = PBXGroup;
 			children = (
-				1490EF93227F84B5001698ED /* IAPHelper */,
-				1490EF89227F7FA4001698ED /* Classes */,
+				1490EF93227F84B5001698ED /* DYFIAPHelper */,
+				1490EF89227F7FA4001698ED /* Example */,
 				1490EF68227F7ECF001698ED /* InAppPurchase-for-iOS */,
 				1490EF67227F7ECF001698ED /* Products */,
 			);
@@ -82,7 +82,7 @@
 			path = "InAppPurchase-for-iOS";
 			sourceTree = "<group>";
 		};
-		1490EF89227F7FA4001698ED /* Classes */ = {
+		1490EF89227F7FA4001698ED /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				1490EF8D227F7FA4001698ED /* DYFStoreManager.h */,
@@ -90,16 +90,16 @@
 				1490EF8C227F7FA4001698ED /* DYFVendedModel.h */,
 				1490EF8F227F7FA4001698ED /* DYFVendedModel.m */,
 			);
-			path = Classes;
+			path = Example;
 			sourceTree = "<group>";
 		};
-		1490EF93227F84B5001698ED /* IAPHelper */ = {
+		1490EF93227F84B5001698ED /* DYFIAPHelper */ = {
 			isa = PBXGroup;
 			children = (
 				1490EF94227F84B5001698ED /* DYFIAPHelper.h */,
 				1490EF95227F84B5001698ED /* DYFIAPHelper.m */,
 			);
-			path = IAPHelper;
+			path = DYFIAPHelper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

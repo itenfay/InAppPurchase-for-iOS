@@ -14,21 +14,21 @@ typedef void (^DYFStorePurchaseDidCompleteBlock)(BOOL status, NSString *msg);
 @interface DYFStoreManager : NSObject
 
 // 售卖模型
-@property (nonatomic, strong) DYFVendedModel *esm_model;
+@property (nonatomic, strong) DYFVendedModel *model;
 
 // 获取商店管理员单例
-+ (instancetype)esm_sharedMgr;
++ (instancetype)sharedMgr;
 
 // 请求商品
-- (void)esm_requestProductForIds:(NSArray *)productIds;
+- (void)requestProductForIds:(NSArray *)productIds;
 
 // 购买
-- (void)esm_purchaseProductForId:(NSString *)productId;
+- (void)purchaseProductForId:(NSString *)productId;
 
 // 恢复购买
-- (void)esm_restorePurchases;
+- (void)restorePurchases;
 
 // 购买完成处理
-- (void)esm_addPurchasedCompletionHandler:(DYFStorePurchaseDidCompleteBlock)block;
+- (void)addPurchasedCompletionHandler:(DYFStorePurchaseDidCompleteBlock)block;
 
 @end
