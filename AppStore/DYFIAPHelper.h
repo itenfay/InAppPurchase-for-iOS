@@ -2,7 +2,7 @@
 //  DYFIAPHelper.h
 //
 //  Created by dyf on 15/11/4.
-//  Copyright (c) 2015年 dyf. All rights reserved.
+//  Copyright (c) 2015 dyf. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -27,23 +27,23 @@
 #import <StoreKit/StoreKit.h>
 
 typedef NS_ENUM(NSInteger, DYFIAPProductRequestStatus) {
-    DYFIAPProductFound, // Indicates that there are a valid product.
-    DYFIAPProductsFound, // Indicates that there are some valid products.
-    DYFIAPIdentifiersNotFound, // indicates that are some invalid product identifiers.
+    DYFIAPProductFound,           // Indicates that there are a valid product.
+    DYFIAPProductsFound,          // Indicates that there are some valid products.
+    DYFIAPIdentifiersNotFound,    // indicates that are some invalid product identifiers.
     DYFIAPProductRequestResponse, // Returns valid products and invalid product identifiers.
-    DYFIAPRequestFailed // Indicates that the product request failed.
+    DYFIAPRequestFailed           // Indicates that the product request failed.
 };
 
 typedef NS_ENUM(NSInteger, DYFIAPPurchaseNotificationStatus) {
-    DYFIAPStatusPurchasing, // Indicates that the status is purchasing.
-    DYFIAPPurchaseFailed, // Indicates that the purchase was unsuccessful.
-    DYFIAPPurchaseSucceeded, // Indicates that the purchase was successful.
-    DYFIAPRestoredFailed, // Indicates that restoring products was unsuccessful.
-    DYFIAPRestoredSucceeded, // Indicates that restoring products was successful.
-    DYFIAPDownloadStarted, // Indicates that downloading a hosted content has started.
-    DYFIAPDownloadInProgress, // Indicates that a hosted content is currently being downloaded.
-    DYFIAPDownloadFailed, // Indicates that downloading a hosted content failed.
-    DYFIAPDownloadSucceeded // Indicates that a hosted content was successfully downloaded.
+    DYFIAPStatusPurchasing,       // Indicates that the status is purchasing.
+    DYFIAPPurchaseFailed,         // Indicates that the purchase was unsuccessful.
+    DYFIAPPurchaseSucceeded,      // Indicates that the purchase was successful.
+    DYFIAPRestoredFailed,         // Indicates that restoring products was unsuccessful.
+    DYFIAPRestoredSucceeded,      // Indicates that restoring products was successful.
+    DYFIAPDownloadStarted,        // Indicates that downloading a hosted content has started.
+    DYFIAPDownloadInProgress,     // Indicates that a hosted content is currently being downloaded.
+    DYFIAPDownloadFailed,         // Indicates that downloading a hosted content failed.
+    DYFIAPDownloadSucceeded       // Indicates that a hosted content was successfully downloaded.
 };
 
 // Provides notification about the purchase.
@@ -69,12 +69,6 @@ FOUNDATION_EXPORT NSString * __nonnull const DYFIAPPurchaseNotification;
 
 // Tells the delegate that the request has completed.
 - (void)productRequestDidComplete;
-
-@optional
-
-// Tells the delegate that the receipt validation has completed.
-// The error that caused the receipt validation to fail.
-- (void)verifyReceiptDidCompleteWithData:(nullable NSData *)data error:(nullable NSError *)error;
 
 @end
 
@@ -136,13 +130,5 @@ FOUNDATION_EXPORT NSString * __nonnull const DYFIAPPurchaseNotification;
 
 // Removes the transaction from the queue for purchased and restored statuses.
 - (void)finishTransaction:(nullable SKPaymentTransaction *)transaction;
-
-// Verifies receipt but recommend to use in server side instead of using this function.
-- (void)verifyReceipt:(nonnull NSData *)receiptData;
-
-// Verifies receipt but recommend to use in server side instead of using this function.
-// Only used for receipts that contain auto-renewable subscriptions.
-// Your app’s shared secret (a hexadecimal string).
-- (void)verifyReceipt:(nonnull NSData *)receiptData sharedSecret:(nullable NSString *)secretKey;
 
 @end

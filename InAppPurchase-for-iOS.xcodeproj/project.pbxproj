@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1469330222E0AF6000CAFBA6 /* DYFIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 146932FE22E0AF5F00CAFBA6 /* DYFIAPHelper.m */; };
+		1469330322E0AF6000CAFBA6 /* DYFReceiptVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469330022E0AF5F00CAFBA6 /* DYFReceiptVerifier.m */; };
 		1490EF6B227F7ECF001698ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF6A227F7ECF001698ED /* AppDelegate.m */; };
 		1490EF6E227F7ECF001698ED /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF6D227F7ECF001698ED /* ViewController.m */; };
 		1490EF71227F7ECF001698ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1490EF6F227F7ECF001698ED /* Main.storyboard */; };
@@ -15,10 +17,13 @@
 		1490EF79227F7EDC001698ED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF78227F7EDC001698ED /* main.m */; };
 		1490EF90227F7FA4001698ED /* DYFStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF8B227F7FA4001698ED /* DYFStoreManager.m */; };
 		1490EF92227F7FA4001698ED /* DYFVendedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF8F227F7FA4001698ED /* DYFVendedModel.m */; };
-		1490EF96227F84B5001698ED /* DYFIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF95227F84B5001698ED /* DYFIAPHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		146932FE22E0AF5F00CAFBA6 /* DYFIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYFIAPHelper.m; sourceTree = "<group>"; };
+		146932FF22E0AF5F00CAFBA6 /* DYFIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFIAPHelper.h; sourceTree = "<group>"; };
+		1469330022E0AF5F00CAFBA6 /* DYFReceiptVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYFReceiptVerifier.m; sourceTree = "<group>"; };
+		1469330122E0AF6000CAFBA6 /* DYFReceiptVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFReceiptVerifier.h; sourceTree = "<group>"; };
 		1490EF66227F7ECF001698ED /* InAppPurchase-for-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InAppPurchase-for-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1490EF69227F7ECF001698ED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1490EF6A227F7ECF001698ED /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -33,8 +38,6 @@
 		1490EF8C227F7FA4001698ED /* DYFVendedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFVendedModel.h; sourceTree = "<group>"; };
 		1490EF8D227F7FA4001698ED /* DYFStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFStoreManager.h; sourceTree = "<group>"; };
 		1490EF8F227F7FA4001698ED /* DYFVendedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYFVendedModel.m; sourceTree = "<group>"; };
-		1490EF94227F84B5001698ED /* DYFIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFIAPHelper.h; sourceTree = "<group>"; };
-		1490EF95227F84B5001698ED /* DYFIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYFIAPHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +54,9 @@
 		1490EF5D227F7ECF001698ED = {
 			isa = PBXGroup;
 			children = (
-				1490EF93227F84B5001698ED /* DYFIAPHelper */,
+				1490EF93227F84B5001698ED /* AppStore */,
 				1490EF89227F7FA4001698ED /* Example */,
-				1490EF68227F7ECF001698ED /* InAppPurchase-for-iOS */,
+				1490EF68227F7ECF001698ED /* Basic Files */,
 				1490EF67227F7ECF001698ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,7 +69,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1490EF68227F7ECF001698ED /* InAppPurchase-for-iOS */ = {
+		1490EF68227F7ECF001698ED /* Basic Files */ = {
 			isa = PBXGroup;
 			children = (
 				1490EF69227F7ECF001698ED /* AppDelegate.h */,
@@ -79,7 +82,7 @@
 				1490EF77227F7EDC001698ED /* Info.plist */,
 				1490EF78227F7EDC001698ED /* main.m */,
 			);
-			path = "InAppPurchase-for-iOS";
+			path = "Basic Files";
 			sourceTree = "<group>";
 		};
 		1490EF89227F7FA4001698ED /* Example */ = {
@@ -93,13 +96,15 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		1490EF93227F84B5001698ED /* DYFIAPHelper */ = {
+		1490EF93227F84B5001698ED /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
-				1490EF94227F84B5001698ED /* DYFIAPHelper.h */,
-				1490EF95227F84B5001698ED /* DYFIAPHelper.m */,
+				146932FF22E0AF5F00CAFBA6 /* DYFIAPHelper.h */,
+				146932FE22E0AF5F00CAFBA6 /* DYFIAPHelper.m */,
+				1469330122E0AF6000CAFBA6 /* DYFReceiptVerifier.h */,
+				1469330022E0AF5F00CAFBA6 /* DYFReceiptVerifier.m */,
 			);
-			path = DYFIAPHelper;
+			path = AppStore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +133,7 @@
 		1490EF5E227F7ECF001698ED /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = DYF;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = dyf;
 				TargetAttributes = {
@@ -172,9 +178,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1469330322E0AF6000CAFBA6 /* DYFReceiptVerifier.m in Sources */,
 				1490EF6E227F7ECF001698ED /* ViewController.m in Sources */,
 				1490EF79227F7EDC001698ED /* main.m in Sources */,
-				1490EF96227F84B5001698ED /* DYFIAPHelper.m in Sources */,
+				1469330222E0AF6000CAFBA6 /* DYFIAPHelper.m in Sources */,
 				1490EF6B227F7ECF001698ED /* AppDelegate.m in Sources */,
 				1490EF90227F7FA4001698ED /* DYFStoreManager.m in Sources */,
 				1490EF92227F7FA4001698ED /* DYFVendedModel.m in Sources */,
@@ -321,7 +328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "InAppPurchase-for-iOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Basic Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -340,7 +347,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "InAppPurchase-for-iOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Basic Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

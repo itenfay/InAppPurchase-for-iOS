@@ -48,36 +48,40 @@
     }
 }
 
-- (void)purchaseProductForId:(NSString *)productId {
+- (void)purchaseProductForId:(NSString *)productId completion:(DYFStorePurchaseDidCompleteBlock)block {
     if ([self.iapHelper canMakePayments]) {
         if (productId.length > 0) {
-            self.m_productId = productId;
-            SKProduct *product = [self getProduct:productId];
+            
+            self.didCompleteBlock = block;
+            self.m_productId      = productId;
+            SKProduct *product    = [self getProduct:productId];
+            
             if (product) {
                 [self startPurchase:product];
             } else {
                 [self showTipsWithMsg:@"正在获取商品信息"];
                 [self.iapHelper requestProductForId:productId];
             }
+            
         } else {
+            
             [self showErrorWithMsg:@"商品ID不能为空"];
+            
         }
     } else {
+        
         [self showErrorWithMsg:@"此设备上禁用了购买"];
     }
 }
 
-- (void)restorePurchases {
+- (void)restorePurchasesWithCompletion:(DYFStorePurchaseDidCompleteBlock)block {
+    self.didCompleteBlock = block;
     [self.iapHelper restoreProducts];
 }
 
 - (void)startPurchase:(SKProduct *)product {
     [self showTipsWithMsg:@"正在发送购买请求"];
     [self.iapHelper buyProduct:product];
-}
-
-- (void)addPurchasedCompletionHandler:(DYFStorePurchaseDidCompleteBlock)block {
-    self.didCompleteBlock = block;
 }
 
 - (void)showTipsWithMsg:(NSString *)msg {
@@ -127,12 +131,12 @@
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if ([self iOS7orLater]) {
         NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-        receipt = [NSData dataWithContentsOfURL:receiptURL];
+        receipt           = [NSData dataWithContentsOfURL:receiptURL];
         if (!receipt) {
-            receipt = trans.transactionReceipt;
+            receipt       = trans.transactionReceipt;
         }
     } else {
-        receipt = trans.transactionReceipt;
+        receipt           = trans.transactionReceipt;
     }
 #pragma clang diagnostic pop
     
@@ -227,18 +231,14 @@
             [self hideTips];
             self.m_storeTransId = nObject.transactionId;
             [self removeTransaction];
-            if (self.didCompleteBlock) {
-                self.didCompleteBlock(NO, @"购买失败");
-            }
+            !self.didCompleteBlock ?: self.didCompleteBlock(NO, @"购买失败");
             break;
         }
             
         case DYFIAPRestoredFailed: {
             //DBLog(@"%@", nObject.message);
             [self hideTips];
-            if (self.didCompleteBlock) {
-                self.didCompleteBlock(NO, @"恢复失败，请重试");
-            }
+            !self.didCompleteBlock ?: self.didCompleteBlock(NO, @"恢复失败，请重试");
             break;
         }
             
@@ -526,12 +526,12 @@
 }
 
 - (void)verifyToken:(NSString *)token {
-    //NSString *currToken = [NSUserDefaults.standardUserDefaults objectForKey:@"token"];
-    //if (StringEqual(token, currToken)) {
+//    NSString *currToken = [NSUserDefaults.standardUserDefaults objectForKey:@"token"];
+//    if (StringEqual(token, currToken)) {
         [self updateUserInfo];
-    //} else {
-    //  [self showAlertWithMessage:@"检测您当前的身份与购买的身份不相符，是否同意切换？若您不同意切换，则无法将购买的产品发放给您。"];
-    //}
+//    } else {
+//      [self showAlertWithMessage:@"检测您当前的身份与购买的身份不相符，是否同意切换？若您不同意切换，则无法将购买的产品发放给您。"];
+//    }
 }
 
 - (void)updateUserInfo {

@@ -2,7 +2,7 @@
 //  DYFIAPHelper.m
 //
 //  Created by dyf on 15/11/4.
-//  Copyright (c) 2015年 dyf. All rights reserved.
+//  Copyright (c) 2015 dyf. All rights reserved.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -39,36 +39,19 @@
     #endif
 #endif
 
-// Provides notification about the purchase.
-NSString *const DYFIAPPurchaseNotification = @"DYFIAPPurchaseNotification";
-
-// https://sandbox.itunes.apple.com/verifyReceipt
-static const char __6FD0F31B976A325E[] = {0x68, 0x74, 0x74, 0x70, 0x73, 0x3a, 0x2f, 0x2f, 0x73, 0x61, 0x6e, 0x64, 0x62, 0x6f, 0x78, 0x2e, 0x69, 0x74, 0x75, 0x6e, 0x65, 0x73, 0x2e, 0x61, 0x70, 0x70, 0x6c, 0x65, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x52, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74};
-
-// https://buy.itunes.apple.com/verifyReceipt
-static const char __68C346B47CD9834D[] = {0x68, 0x74, 0x74, 0x70, 0x73, 0x3a, 0x2f, 0x2f, 0x62, 0x75, 0x79, 0x2e, 0x69, 0x74, 0x75, 0x6e, 0x65, 0x73, 0x2e, 0x61, 0x70, 0x70, 0x6c, 0x65, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x76, 0x65, 0x72, 0x69, 0x66, 0x79, 0x52, 0x65, 0x63, 0x65, 0x69, 0x70, 0x74};
-
-// Decodes c string.
-CG_INLINE NSString *DYFDecodeCString(const char *bytes) {
-    if (bytes) {
-        return [NSString stringWithUTF8String:bytes];
-    }
-    return nil;
-}
-
 // Posts notification with object.
 CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *object) {
     [[NSNotificationCenter defaultCenter] postNotificationName:DYFIAPPurchaseNotification object:object];
 }
+
+// Provides notification about the purchase.
+NSString *const DYFIAPPurchaseNotification = @"DYFIAPPurchaseNotification";
 
 @implementation DYFIAPPurchaseNotificationObject
 
 @end
 
 @interface DYFIAPHelper ()
-
-// The store request data for a POST request.
-@property (nonatomic, strong) NSData *storeRequestData;
 
 // The request object for fetching products from store.
 @property (nonatomic, strong) SKProductsRequest *productsRequest;
@@ -120,9 +103,10 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
 - (void)requestProductForIds:(NSArray *)productIds {
     if (!_productsRequest) {
         // Create a product request object and initialize it with our product identifiers.
-        NSSet *idsSet = [NSSet setWithArray:productIds];
-        _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:idsSet];
+        NSSet *identifiers = [NSSet setWithArray:productIds];
+        _productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:identifiers];
         _productsRequest.delegate = self;
+        
         // Send the request to the App Store.
         [_productsRequest start];
     }
@@ -131,18 +115,16 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
 #pragma mark - SKProductsRequestDelegate
 
 - (BOOL)containsProduct:(SKProduct *)product {
-    BOOL re = NO;
+    BOOL ret = NO;
     NSString *productId = product.productIdentifier;
-    
-    for (SKProduct *mProduct in self.availableProducts) {
-        NSString *mProductId = mProduct.productIdentifier;
-        if ([mProductId isEqualToString:productId]) {
-            re = YES;
+    for (SKProduct *m_product in self.availableProducts) {
+        NSString *m_productId = m_product.productIdentifier;
+        if ([m_productId isEqualToString:productId]) {
+            ret = YES;
             break;
         }
     }
-    
-    return re;
+    return ret;
 }
 
 // Used to get the App Store's response to your request and notifies your observer.
@@ -207,18 +189,21 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
 // Returns the product by matching a given product identifier.
 - (id)getProduct:(NSString *)productId {
     SKProduct *availableProduct = nil;
+    
     for (SKProduct *product in self.availableProducts) {
         NSString *m_id = product.productIdentifier;
         if ([m_id isEqualToString:productId]) {
             availableProduct = product;
         }
     }
+    
     return availableProduct;
 }
 
 // Returns the localized price of product by matching a given product identifier.
 - (NSString *)getLocalePrice:(NSString *)productId {
     SKProduct *product = [self getProduct:productId];
+    
     if (product) {
         NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
         [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
@@ -226,6 +211,7 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
         [numberFormatter setLocale:product.priceLocale];
         return [numberFormatter stringFromNumber:product.price];
     }
+    
     return nil;
 }
 
@@ -288,9 +274,11 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing: {
                 PrintLog(@"Purchasing.");
+                
                 DYFIAPPurchaseNotificationObject *nObject = [[DYFIAPPurchaseNotificationObject alloc] init];
                 nObject.status = DYFIAPStatusPurchasing;
                 DYFPostNotificationWithObject(nObject);
+                
                 break;
             }
                 
@@ -298,12 +286,13 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
             case SKPaymentTransactionStateDeferred: {
                 // Do not block your UI. Allow the user to continue using your app.
                 PrintLog(@"Deferred. Allow the user to continue using your app.");
-                break;
             }
+                break;
 #endif
                 
             case SKPaymentTransactionStatePurchased: {
                 PrintLog(@"Purchased. Deliver content for %@.", transaction.payment.productIdentifier);
+                
                 // Check whether the purchased product has content hosted with Apple.
                 [self.purchasedProducts addObject:transaction];
                 if (transaction.downloads && transaction.downloads.count > 0) {
@@ -311,11 +300,12 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
                 } else {
                     [self completeTransaction:transaction forStatus:DYFIAPPurchaseSucceeded];
                 }
-                break;
             }
+                break;
                 
             case SKPaymentTransactionStateRestored: {
                 PrintLog(@"Restored. Restore content for %@.", transaction.payment.productIdentifier);
+                
                 // Send a DYFIAPDownloadStarted notification if it has.
                 [self.restoredProducts addObject:transaction];
                 if (transaction.downloads && transaction.downloads.count > 0) {
@@ -323,15 +313,16 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
                 } else {
                     [self completeTransaction:transaction forStatus:DYFIAPRestoredSucceeded];
                 }
-                break;
             }
+                break;
                 
             case SKPaymentTransactionStateFailed: {
                 PrintLog(@"Purchase of %@ failed.", transaction.payment.productIdentifier);
+                
                 [self.purchasedProducts addObject:transaction];
                 [self completeTransaction:transaction forStatus:DYFIAPPurchaseFailed];
-                break;
             }
+                break;
                 
             default:
                 break;
@@ -349,42 +340,42 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
                 nObject.status = DYFIAPDownloadInProgress;
                 nObject.downloadProgress = download.progress*100;
                 DYFPostNotificationWithObject(nObject);
-                break;
             }
+                break;
                 
             case SKDownloadStateCancelled: {
                 // StoreKit saves your downloaded content in the Caches directory. Let's remove it.
                 // before finishing the transaction.
                 [[NSFileManager defaultManager] removeItemAtURL:download.contentURL error:nil];
                 [self finishDownloadTransaction:download.transaction];
-                break;
             }
+                break;
                 
             case SKDownloadStateFailed: {
                 // If a download fails, remove it from the Caches, then finish the transaction.
                 // It is recommended to retry downloading the content in this case.
                 [[NSFileManager defaultManager] removeItemAtURL:download.contentURL error:nil];
                 [self finishDownloadTransaction:download.transaction];
-                break;
             }
+                break;
                 
             case SKDownloadStatePaused: {
                 PrintLog(@"Download was paused.");
-                break;
             }
+                break;
                 
             case SKDownloadStateFinished: {
                 // Download is complete. StoreKit saves the downloaded content in the Caches directory.
                 PrintLog(@"Finished. Location of downloaded file %@.", download.contentURL);
                 [self finishDownloadTransaction:download.transaction];
-                break;
             }
+                break;
                 
             case SKDownloadStateWaiting: {
                 PrintLog(@"Download Waiting.");
                 [[SKPaymentQueue defaultQueue] startDownloads:@[download]];
-                break;
             }
+                break;
                 
             default:
                 break;
@@ -473,80 +464,6 @@ CG_INLINE void DYFPostNotificationWithObject(DYFIAPPurchaseNotificationObject *o
             DYFPostNotificationWithObject(nObject);
         }
     }
-}
-
-- (void)verifyReceipt:(NSData *)receiptData {
-    [self verifyReceipt:receiptData sharedSecret:nil];
-}
-
-- (void)verifyReceipt:(NSData *)receiptData sharedSecret:(NSString *)secretKey {
-    NSString *receiptBase64 = [receiptData base64EncodedStringWithOptions:0];
-    
-    // Create the JSON object that describes the request.
-    NSError *error = nil;
-    if(secretKey && secretKey.length > 0) {
-        NSMutableDictionary *requestContents = [NSMutableDictionary dictionaryWithCapacity:0];
-        [requestContents setValue:receiptBase64 forKey:@"receipt-data"];
-        [requestContents setValue:secretKey forKey:@"password"];
-        self.storeRequestData = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:&error];
-    } else {
-        NSMutableDictionary *requestContents = [NSMutableDictionary dictionaryWithCapacity:0];
-        [requestContents setValue:receiptBase64 forKey:@"receipt-data"];
-        self.storeRequestData = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:&error];
-    }
-    
-    if (!error) {
-        [self connectionWithURL:DYFDecodeCString(__68C346B47CD9834D)];
-    } else {
-        if ([self.delegate respondsToSelector:@selector(verifyReceiptDidCompleteWithData:error:)]) {
-            [self.delegate verifyReceiptDidCompleteWithData:nil error:error];
-        }
-    }
-}
-
-- (void)connectionWithURL:(NSString *)urlString {
-    // Create a POST request with the receipt data.
-    NSURL *requstURL = [NSURL URLWithString:urlString];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:requstURL];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:self.storeRequestData];
-    
-    // Make a connection to the iTunes Store on a background queue.
-    __weak __typeof(self) weakSelf = self;
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        [weakSelf connectionDidReceiveData:data response:response error:error];
-    }];
-    [dataTask resume];
-}
-
-- (void)connectionDidReceiveData:(NSData *)data response:(NSURLResponse *)response error:(NSError *)error {
-    __weak __typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (!error) {
-            NSError *m_error = nil;
-            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&m_error];
-            if (!m_error) {
-                NSInteger status = [[jsonResponse objectForKey:@"status"] integerValue];
-                if (status == 21007) {
-                    [self connectionWithURL:DYFDecodeCString(__6FD0F31B976A325E)];
-                } else {
-                    weakSelf.storeRequestData = nil;
-                    if ([weakSelf.delegate respondsToSelector:@selector(verifyReceiptDidCompleteWithData:error:)]) {
-                        [weakSelf.delegate verifyReceiptDidCompleteWithData:data error:nil];
-                    }
-                }
-            } else {
-                if ([weakSelf.delegate respondsToSelector:@selector(verifyReceiptDidCompleteWithData:error:)]) {
-                    [weakSelf.delegate verifyReceiptDidCompleteWithData:nil error:m_error];
-                }
-            }
-        } else {
-            if ([weakSelf.delegate respondsToSelector:@selector(verifyReceiptDidCompleteWithData:error:)]) {
-                [weakSelf.delegate verifyReceiptDidCompleteWithData:nil error:error];
-            }
-        }
-    });
 }
 
 - (void)dealloc {
