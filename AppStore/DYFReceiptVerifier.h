@@ -1,8 +1,8 @@
 //
 //  DYFReceiptVerifier.h
 //
-//  Created by dyf on 15/11/4.
-//  Copyright (c) 2015 dyf. All rights reserved.
+//  Created by dyf on 2015/11/04.
+//  Copyright © 2015 dyf. ( https://github.com/dgynfi/InAppPurchase-for-iOS )
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal

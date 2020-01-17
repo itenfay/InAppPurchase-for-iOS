@@ -1,8 +1,8 @@
 //
 //  DYFStoreManager.m
 //
-//  Created by dyf on 2017/10/19.
-//  Copyright © 2017年 dyf. All rights reserved.
+//  Created by dyf on 2015/11/04.
+//  Copyright © 2015 dyf. All rights reserved.
 //
 
 #import "DYFStoreManager.h"

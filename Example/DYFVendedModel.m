@@ -1,8 +1,8 @@
 //
 //  DYFVendedModel.m
 //
-//  Created by dyf on 2017/11/20.
-//  Copyright © 2017年 dyf. All rights reserved.
+//  Created by dyf on 2015/11/04.
+//  Copyright © 2015 dyf. All rights reserved.
 //
 
 #import "DYFVendedModel.h"

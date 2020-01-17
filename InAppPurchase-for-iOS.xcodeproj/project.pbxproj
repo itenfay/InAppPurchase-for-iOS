@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1469330222E0AF6000CAFBA6 /* DYFIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 146932FE22E0AF5F00CAFBA6 /* DYFIAPHelper.m */; };
 		1469330322E0AF6000CAFBA6 /* DYFReceiptVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 1469330022E0AF5F00CAFBA6 /* DYFReceiptVerifier.m */; };
+		14712C80237470BE0076F148 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14712C7F237470BE0076F148 /* Foundation.framework */; };
+		14712C82237470CA0076F148 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14712C81237470CA0076F148 /* UIKit.framework */; };
+		14712C84237470E30076F148 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14712C83237470E30076F148 /* CoreGraphics.framework */; };
+		14712C86237470EF0076F148 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14712C85237470EE0076F148 /* StoreKit.framework */; };
 		1490EF6B227F7ECF001698ED /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF6A227F7ECF001698ED /* AppDelegate.m */; };
 		1490EF6E227F7ECF001698ED /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490EF6D227F7ECF001698ED /* ViewController.m */; };
 		1490EF71227F7ECF001698ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1490EF6F227F7ECF001698ED /* Main.storyboard */; };
@@ -24,6 +28,10 @@
 		146932FF22E0AF5F00CAFBA6 /* DYFIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFIAPHelper.h; sourceTree = "<group>"; };
 		1469330022E0AF5F00CAFBA6 /* DYFReceiptVerifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYFReceiptVerifier.m; sourceTree = "<group>"; };
 		1469330122E0AF6000CAFBA6 /* DYFReceiptVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFReceiptVerifier.h; sourceTree = "<group>"; };
+		14712C7F237470BE0076F148 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		14712C81237470CA0076F148 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		14712C83237470E30076F148 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		14712C85237470EE0076F148 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		1490EF66227F7ECF001698ED /* InAppPurchase-for-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InAppPurchase-for-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1490EF69227F7ECF001698ED /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1490EF6A227F7ECF001698ED /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -45,12 +53,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14712C86237470EF0076F148 /* StoreKit.framework in Frameworks */,
+				14712C84237470E30076F148 /* CoreGraphics.framework in Frameworks */,
+				14712C82237470CA0076F148 /* UIKit.framework in Frameworks */,
+				14712C80237470BE0076F148 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14712C7E237470BD0076F148 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14712C85237470EE0076F148 /* StoreKit.framework */,
+				14712C83237470E30076F148 /* CoreGraphics.framework */,
+				14712C81237470CA0076F148 /* UIKit.framework */,
+				14712C7F237470BE0076F148 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1490EF5D227F7ECF001698ED = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +81,7 @@
 				1490EF89227F7FA4001698ED /* Example */,
 				1490EF68227F7ECF001698ED /* Basic Files */,
 				1490EF67227F7ECF001698ED /* Products */,
+				14712C7E237470BD0076F148 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
