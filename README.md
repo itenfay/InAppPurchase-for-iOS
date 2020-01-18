@@ -19,7 +19,7 @@
 
 &emsp; This project has been deprecated. Please use the new libraries.
 
-- [DYFStore](https://github.com/dgynfi/DYFStoreKit_Swift) (Swift) 
+- [DYFStore](https://github.com/dgynfi/DYFStore) (Swift) 
 
 - [DYFStoreKit](https://github.com/dgynfi/DYFStoreKit) (Objective-C)
 
