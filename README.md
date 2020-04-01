@@ -12,7 +12,7 @@ This project has been deprecated. Please use the new library.
     - [DYFStore](https://github.com/dgynfi/DYFStore) (Swift) 
     - [DYFStoreKit](https://github.com/dgynfi/DYFStoreKit) (Objective-C) 
 
-## Group (ID:15535338)
+## Group (ID:614799921)
 
 <div align=left>
 &emsp; <img src="https://github.com/dgynfi/InAppPurchase-for-iOS/raw/master/images/g614799921.jpg" width="30%" />
