@@ -9,8 +9,8 @@ iOS `StoreKit` wrapper for In-app purchases and provides the demo that indicates
 This project has been deprecated. Please use the new library.
 
 - In-app Purchase New Library:
-    - [DYFStore](https://github.com/dgynfi/DYFStore) (Swift) 
     - [DYFStoreKit](https://github.com/dgynfi/DYFStoreKit) (Objective-C) 
+    - [DYFStore](https://github.com/dgynfi/DYFStore) (Swift) 
 
 ## Group (ID:614799921)
 
