@@ -9,11 +9,11 @@ iOS `StoreKit` wrapper for In-app purchases and provides the demo that indicates
 This project has been deprecated. Please use the new library.
 
 - In-app Purchase New Library:
-    - [DYFStoreKit](https://github.com/dgynfi/DYFStoreKit) (Objective-C) 
-    - [DYFStore](https://github.com/dgynfi/DYFStore) (Swift) 
+    - [DYFStore](https://github.com/chenxing640/DYFStore) (Swift) 
+    - [DYFStoreKit](https://github.com/chenxing640/DYFStoreKit) (Objective-C) 
 
 ## Group (ID:614799921)
 
 <div align=left>
-&emsp; <img src="https://github.com/dgynfi/InAppPurchase-for-iOS/raw/master/images/g614799921.jpg" width="30%" />
+&emsp; <img src="https://github.com/chenxing640/InAppPurchase-for-iOS/raw/master/images/g614799921.jpg" width="30%" />
 </div>
